@@ -1,0 +1,25 @@
+{
+  "name": "generate-a-team-profile",
+  "version": "1.0.0",
+  "description": "challenge-10",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalasD93/generate-a-team-profile.git"
+  },
+  "author": "Diana Salas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SalasD93/generate-a-team-profile/issues"
+  },
+  "homepage": "https://github.com/SalasD93/generate-a-team-profile#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
