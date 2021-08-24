@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
 // const questions = require("./questions");
 // const {Manager, Engineer, Intern} = require("../lib/Team.js");
 const Manager = require("../lib/Manager");
@@ -9,7 +10,7 @@ const Manager = require("../lib/Manager");
 
 class Team {
     constructor() {
-        this.teamMembers = [];
+        this.teamMembers = [new Manager(), new Engineer(), new Intern(), ''];
         this.manager;
         this.engineer;
         this.intern;
@@ -22,7 +23,7 @@ class Team {
                     type: "list",
                     name: "members",
                     message: "Would you like to add a team manager, engineer, or intern?",
-                    choices: ["Team Manager", "Engineer", "Intern", "Build Team",],
+                    choices: ["Team Manager", "Engineer", "Intern", "Add Another Member", "Build Team",],
                 },
             )
             .then(({members}) => {
@@ -38,32 +39,20 @@ class Team {
                         this.engineer.createEngineer();
                         break;
                     case "Intern":
-                        console.log("Intern");
-                        createIntern();
+                        console.log("intern");
+                        this.intern = new Intern();
+                        this.intern.createIntern();
+                        break;
+                    case "Add Another Member":
+                        console.log("add member");
                         break;
                     case "Build Team":
                         console.log("Build Team");
                         createTeam();
                         break;
                 }
-                // if (memberslist === "Team Manager") {
-                //     console.log("Manager");
-                //     return this.manager = true;
-                //     // createManager();
-                // } else if (memberslist === "Engineer") {
-                //     console.log("Engineer");
-                //     return this.engineer = true;
-                //     // createEngineer();
-                // } else if (memberslist === "Intern") {
-                //     console.log("Intern");
-                //     return this.intern = true;
-                //     // createIntern();
-                // } else if (memberslist === "none") {
-                //     console.log("none");
-                //     return false;
-                //     // createTeam();
-                // }
             })
+            // .then(console.log(this.teamMembers))
             .catch(err => {
                 console.log(err);
             })
