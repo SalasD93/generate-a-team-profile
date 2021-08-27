@@ -6,7 +6,7 @@ const generateStyles = require('./generateStyles');
 // This function creates team member cards in HTML
 const memberCards = (member) => {
     let cardHTML = "";
-    members.forEach((member) => {
+    member.forEach((member) => {
         let icon = '';
         let color = ''
         if (member.getRole() == "Manager") {
@@ -80,9 +80,4 @@ const writeToFile = (filename, cardHTML) => {
     fs.writeFileSync(path.join(process.cwd(), "/src/", filename), cardHTML);
 };
 
-
-
-
-
-
-module.exports = cardHTML;
+module.exports = generateHTML;

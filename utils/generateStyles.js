@@ -18,4 +18,4 @@ let css = `#card-container {
 return css;
 };
 
-module.exports = css;
+module.exports.css = css;

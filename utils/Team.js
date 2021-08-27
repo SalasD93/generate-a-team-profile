@@ -64,7 +64,7 @@ class Team {
             if (answers.members === "Build Team") {
                 console.log(answers.members)
                 console.log(this.teamMembers)
-                // generateHTML()
+                generateHTML(answers);
             } else {
                 console.log(answers.members)
                 this.teamMembers.push(answers);
