@@ -1,70 +1,83 @@
+// These are the required modules/packages
 const inquirer = require("inquirer");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
-// const questions = require("./questions");
-// const {Manager, Engineer, Intern} = require("../lib/Team.js");
+const generateHTML = require("../utils/generateHTML");
 const Manager = require("../lib/Manager");
-// const Engineer = require("../lib/Engineer");
-// const Intern = require("../lib/Intern");
-// const {createManager, engineerQs, internQs} = require("./questions");
+const Member = require("../lib/Member");
 
+// This constructor creates the Team
 class Team {
     constructor() {
-        this.teamMembers = [new Manager(), new Engineer(), new Intern(), ''];
-        this.manager;
-        this.engineer;
-        this.intern;
+        // This creates an array to hold the team members
+        this.teamMembers = [];
     }
-
+    // These questions form the team members
+    questionPrompt() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "members",
+                message: "Would you like to add a team manager, engineer, or intern?",
+                choices: ["Team Manager", "Engineer", "Intern", "Build Team",],
+            },            
+            {
+                type: "input",
+                name: "name",
+                message: "Please enter the team member's name.",
+                when: (answers) => answers.members != "Build Team"
+            },
+            {
+                type: "input",
+                name: "id",
+                message: "Please enter the team member's ID.",
+                when: (answers) => answers.members != "Build Team"
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "Please enter the team member's email.",
+                when: (answers) => answers.members != "Build Team"
+            },
+            {
+                type: "input",
+                name: "office",
+                message: "Please enter the team member's office number.",
+                when: (answers) => answers.members === "Team Manager"
+            },
+            {
+                type: "input",
+                name: "github",
+                message: "Please enter the team member's GitHub username.",
+                when: (answers) => answers.members === "Engineer"
+            },
+            {
+                type: "input",
+                name: "school",
+                message: "Please enter the team member's school.",
+                when: ( answers ) => answers.members === "Intern"
+            }
+        ])
+        .then(( answers ) => {
+            console.log(answers.members);
+            if (answers.members === "Build Team") {
+                console.log(answers.members)
+                console.log(this.teamMembers)
+                // generateHTML()
+            } else {
+                console.log(answers.members)
+                this.teamMembers.push(answers);
+                return this.questionPrompt();
+            }
+        })    
+        .catch(err => {
+            console.log(err);
+        })
+    }
     createTeam() {
-        inquirer
-            .prompt(
-                {
-                    type: "list",
-                    name: "members",
-                    message: "Would you like to add a team manager, engineer, or intern?",
-                    choices: ["Team Manager", "Engineer", "Intern", "Add Another Member", "Build Team",],
-                },
-            )
-            .then(({members}) => {
-                switch (members) {
-                    case "Team Manager":
-                        console.log("manager");
-                        this.manager = new Manager();
-                        this.manager.createManager();
-                        break;
-                    case "Engineer":
-                        console.log("engineer");
-                        this.engineer = new Engineer();                        
-                        this.engineer.createEngineer();
-                        break;
-                    case "Intern":
-                        console.log("intern");
-                        this.intern = new Intern();
-                        this.intern.createIntern();
-                        break;
-                    case "Add Another Member":
-                        console.log("add member");
-                        break;
-                    case "Build Team":
-                        console.log("Build Team");
-                        createTeam();
-                        break;
-                }
-            })
-            // .then(console.log(this.teamMembers))
-            .catch(err => {
-                console.log(err);
-            })
-        }
-        // createManager() {
-        //     console.log(managerQs);
-        //     inquirer
-        //         .prompt(managerQs)
-        //         // .then(answers => {
-        //         //     const manager = new Member(answers)
-        //         // })
-        // }
+        this.questionPrompt();
+    }
 }
 // initializeApp();
 module.exports = Team;
