@@ -2,7 +2,7 @@
 const inquirer = require("inquirer");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
-const generateHTML = require("../utils/generateHTML");
+const memberCards = require("../utils/generateHTML");
 const Manager = require("../lib/Manager");
 const Member = require("../lib/Member");
 
@@ -60,14 +60,25 @@ class Team {
             }
         ])
         .then(( answers ) => {
-            console.log(answers.members);
             if (answers.members === "Build Team") {
-                console.log(answers.members)
-                console.log(this.teamMembers)
-                generateHTML(answers);
+                // This function creates the HTML with the constructor info when all the questions are answered
+                memberCards(this.teamMembers);
             } else {
-                console.log(answers.members)
-                this.teamMembers.push(answers);
+                // This lets the different answers for each member to be displayed accordingly
+                let { name, id, email, ...rest } = answers;
+                let extra = Object.entries(rest)[1][1];
+                switch (answers.members) {
+                    case 'Team Manager':
+                        this.teamMembers.push(new Manager(name, id, email, extra));
+                        break;
+                    case 'Engineer':
+                        this.teamMembers.push(new Engineer(name, id, email, extra));
+                        break;
+                    case 'Intern':
+                        this.teamMembers.push(new Intern(name, id, email, extra));
+                        break;
+                }
+                // This restarts the questions after each set is answered
                 return this.questionPrompt();
             }
         })    
@@ -79,5 +90,5 @@ class Team {
         this.questionPrompt();
     }
 }
-// initializeApp();
+
 module.exports = Team;
