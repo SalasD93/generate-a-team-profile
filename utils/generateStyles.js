@@ -5,6 +5,7 @@ let css = `#card-container {
 
 #card {
     margin: 2%;
+    height: 2%;
 }
 
 #border {
