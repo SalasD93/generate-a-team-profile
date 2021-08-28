@@ -11,6 +11,7 @@ let css = `#card-container {
 #border {
     border: solid;
     border-style: dashed;
+    height: 21vh;
 }
 
 #header {
