@@ -29,7 +29,9 @@ const memberCards = (member) => {
             extra = `School: ${member.school}`;
         }
 
-        cardHTML += `<div class="card d-flex" style="width: 18rem;" id="card">
+        cardHTML += 
+        `
+        <div class="card d-flex" style="width: 18rem;" id="card">
             <div class="card-body ${color}">
                 <div class="card-header">
                     <h5 class="card-title">${member.name}</h5>
@@ -67,8 +69,7 @@ const generateHTML = (member) => {
             The Team
         </span>
     </nav>
-    <main class="container d-flex flex-wrap main-wrapper justify-content-evenly min-vh-100" id="card-container">
-        ${member}
+    <main class="container d-flex flex-wrap main-wrapper justify-content-evenly min-vh-100" id="card-container">${member}
     </main>
 </body>
 </html>`;
