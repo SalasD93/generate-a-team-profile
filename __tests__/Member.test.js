@@ -2,7 +2,7 @@ const Member = require("../lib/Member");
 
 const member = new Member("john", 1, "john@test.com");
 
-test("Creates an Member object", () => {
+test("Creates a Member object", () => {
     expect(member).toEqual(expect.any(Object));
 });
 

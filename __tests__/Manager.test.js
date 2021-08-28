@@ -2,7 +2,7 @@ const Manager = require("../lib/Manager");
 
 const manager = new Manager("john", 1, "john@test.com");
 
-test("Creates an Manager object", () => {
+test("Creates a Manager object", () => {
     expect(manager).toEqual(expect.any(Object));
 });
 
