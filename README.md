@@ -31,7 +31,7 @@ For challenge 10 of the UM Coding Bootcamp, I had to use NodeJS to create a gene
 
 ## Mock-Up
 
-![Homework Screenshot 1](https://github.com/SalasD93/generate-a-team-profile/blob/main/assets/Ch10-Screenshot.png?raw=true)
+![Homework Screenshot 1](https://github.com/SalasD93/generate-a-team-profile/blob/main/src/assets/Ch10-Screenshot.png?raw=true)
 
 
 ## Built-With
